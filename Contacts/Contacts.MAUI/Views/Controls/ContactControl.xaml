@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Contacts.MAUI.Views.Controls.ContactControl">
+    <Grid RowDefinitions="*,70" ColumnDefinitions="*" >
+        <VerticalStackLayout Spacing="10" Margin="20, 50, 20, 0" Grid.Row="0" Grid.Column="0">
+            <Border Padding="10, 4, 10, 4" StrokeShape="RoundRectangle 10, 10, 10, 10">
+                <HorizontalStackLayout>
+                    <Label Text="Name:" VerticalOptions="Center" WidthRequest="70"></Label>
+                    <Entry x:Name="EntryName" VerticalOptions="Center" WidthRequest="250">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior x:Name="nameValidator" Flags="ValidateOnAttaching,ValidateOnValueChanged" MinimumLength="1"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </HorizontalStackLayout>
+            </Border>
+            <Border Padding="10, 4, 10, 4" StrokeShape="RoundRectangle 10, 10, 10, 10">
+                <HorizontalStackLayout>
+                    <Label Text="Email:" VerticalOptions="Center" WidthRequest="70"></Label>
+                    <Entry x:Name="EntryEmail" VerticalOptions="Center" WidthRequest="250">
+                        <Entry.Behaviors>
+                            <toolkit:MultiValidationBehavior x:Name="emailValidator" Flags="ValidateOnAttaching,ValidateOnValueChanged">
+                                <toolkit:TextValidationBehavior Flags="ValidateOnAttaching,ValidateOnValueChanged" MinimumLength="1" toolkit:MultiValidationBehavior.Error="Email is requierd!" />
+                                <toolkit:EmailValidationBehavior Flags="ValidateOnAttaching,ValidateOnValueChanged" toolkit:MultiValidationBehavior.Error="Must be a valid Email!"/>
+                            </toolkit:MultiValidationBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                </HorizontalStackLayout>
+            </Border>
+            <Border Padding="10, 4, 10, 4" StrokeShape="RoundRectangle 10, 10, 10, 10">
+                <HorizontalStackLayout>
+                    <Label Text="Phone:" VerticalOptions="Center" WidthRequest="70"></Label>
+                    <Entry x:Name="EntryPhone" VerticalOptions="Center" WidthRequest="250">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior x:Name="phoneValidator" Flags="ValidateOnAttaching,ValidateOnValueChanged" MinimumLength="1"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </HorizontalStackLayout>
+            </Border>
+            <Border Padding="10, 4, 10, 4" StrokeShape="RoundRectangle 10, 10, 10, 10">
+                <HorizontalStackLayout>
+                    <Label Text="Address:" VerticalOptions="Center" WidthRequest="70"></Label>
+                    <Entry x:Name="EntryAddress" VerticalOptions="Center" WidthRequest="250">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior x:Name="addressValidator" Flags="ValidateOnAttaching,ValidateOnValueChanged" MinimumLength="1"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </HorizontalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+        <VerticalStackLayout Margin="0, 0, 0, 0" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0">
+            <HorizontalStackLayout Spacing="40">
+                <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Cancel" WidthRequest="100" BackgroundColor="Red"></Button>
+                <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save" WidthRequest="100" BackgroundColor="Green"></Button>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>
