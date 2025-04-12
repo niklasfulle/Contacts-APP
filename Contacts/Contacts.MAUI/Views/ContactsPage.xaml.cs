@@ -1,14 +1,14 @@
 using System.Collections.ObjectModel;
-using Contacts.MAUI.Models;
 using Contact = Contacts.MAUI.Models.Contact;
+using ContactRepository = Contacts.MAUI.Models.Files.Csv.ContactRepositoryFilesCsv;
 
 namespace Contacts.MAUI.Views;
 
 public partial class ContactsPage : ContentPage
 {
-	public ContactsPage()
-	{
-		InitializeComponent();
+    public ContactsPage()
+    {
+        InitializeComponent();
     }
 
     private void loadContacts()
@@ -35,7 +35,7 @@ public partial class ContactsPage : ContentPage
         var menuItem = sender as MenuItem;
         var contact = menuItem.CommandParameter as Contact;
 
-        if(contact != null)
+        if (contact != null)
         {
             ContactRepository.DeleteContact(contact.ContactId);
         }

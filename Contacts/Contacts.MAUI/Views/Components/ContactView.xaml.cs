@@ -1,14 +1,12 @@
-using Android.Media.TV;
-
 namespace Contacts.MAUI.Views.Components;
 
 public partial class ContactView : ContentView
 {
     public event EventHandler<EventArgs> OnCancel;
     public ContactView()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     public string Name
     {

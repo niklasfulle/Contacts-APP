@@ -61,6 +61,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
+		<PackageReference Include="CsvHelper" Version="33.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.*" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.*" />
 	</ItemGroup>
@@ -84,6 +85,10 @@
 	  <MauiXaml Update="Views\ViewContactPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\Database\" />
 	</ItemGroup>
 
 </Project>

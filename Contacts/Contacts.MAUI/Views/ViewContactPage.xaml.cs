@@ -1,6 +1,5 @@
-using Contacts.MAUI.Models;
 using Contact = Contacts.MAUI.Models.Contact;
-
+using ContactRepository = Contacts.MAUI.Models.Files.Csv.ContactRepositoryFilesCsv;
 namespace Contacts.MAUI.Views;
 
 [QueryProperty(nameof(ContactId), "Id")]
@@ -9,9 +8,9 @@ public partial class ViewContactPage : ContentPage
 
     private Contact contact;
     public ViewContactPage()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     public string ContactId
     {

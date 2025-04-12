@@ -7,26 +7,25 @@
         <VerticalStackLayout Spacing="10" Margin="20, 50, 20, 0" Grid.Row="0" Grid.Column="0">
             <Border Padding="15, 14, 15, 14" StrokeShape="RoundRectangle 10, 10, 10, 10">
                 <HorizontalStackLayout>
-                    <Label Text="Name:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold"></Label>
-                    <Label x:Name="LabelName" VerticalOptions="Center" WidthRequest="250">
-                    </Label>
+                    <Label Text="Name:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold" />
+                    <Label x:Name="LabelName" VerticalOptions="Center" WidthRequest="250" />
                 </HorizontalStackLayout>
             </Border>
             <Border Padding="15, 14, 15, 14" StrokeShape="RoundRectangle 10, 10, 10, 10">
                 <HorizontalStackLayout>
-                    <Label Text="Email:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold"></Label>
+                    <Label Text="Email:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold" />
                     <Label x:Name="LabelEmail" VerticalOptions="Center" WidthRequest="250" />
                 </HorizontalStackLayout>
             </Border>
             <Border Padding="15, 14, 15, 14" StrokeShape="RoundRectangle 10, 10, 10, 10">
                 <HorizontalStackLayout>
-                    <Label Text="Phone:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold"></Label>
+                    <Label Text="Phone:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold" />
                     <Label x:Name="LabelPhone" VerticalOptions="Center" WidthRequest="250" />
                 </HorizontalStackLayout>
             </Border>
             <Border Padding="15, 14, 15, 14" StrokeShape="RoundRectangle 10, 10, 10, 10">
                 <HorizontalStackLayout>
-                    <Label Text="Address:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold"></Label>
+                    <Label Text="Address:" VerticalOptions="Center" WidthRequest="70" FontAttributes="Bold" />
                     <Label x:Name="LabelAddress" VerticalOptions="Center" WidthRequest="250" />
                 </HorizontalStackLayout>
             </Border>

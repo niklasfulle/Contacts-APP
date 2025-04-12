@@ -1,7 +1,7 @@
-namespace Contacts.MAUI.Views;
-
-using Contacts.MAUI.Models;
 using Contact = Contacts.MAUI.Models.Contact;
+using ContactRepository = Contacts.MAUI.Models.Files.Csv.ContactRepositoryFilesCsv;
+
+namespace Contacts.MAUI.Views;
 
 public partial class AddContactPage : ContentPage
 {
@@ -18,13 +18,7 @@ public partial class AddContactPage : ContentPage
 
     private void contactCtrl_OnSave(object sender, EventArgs e)
     {
-        ContactRepository.CreateContact(new Contact
-        {
-            Name = contactCtrl.Name,
-            Email = contactCtrl.Email,
-            Phone = contactCtrl.Phone,
-            Address = contactCtrl.Address
-        });
+        ContactRepository.CreateContact(new Contact(0, contactCtrl.Name, contactCtrl.Email, contactCtrl.Phone, contactCtrl.Address));
         Shell.Current.GoToAsync($"//{nameof(ContactsPage)}");
     }
 

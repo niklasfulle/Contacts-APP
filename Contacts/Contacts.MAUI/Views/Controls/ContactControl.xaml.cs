@@ -8,21 +8,21 @@ public partial class ContactControl : ContentView
 
     public event EventHandler<EventArgs> OnCancel;
     public ContactControl()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
-	public string Name
-	{
-		get
-		{
-			return EntryName.Text;
-		}
-		set
-		{
+    public string Name
+    {
+        get
+        {
+            return EntryName.Text;
+        }
+        set
+        {
             EntryName.Text = value;
-		}
-	}
+        }
+    }
 
     public string Email
     {

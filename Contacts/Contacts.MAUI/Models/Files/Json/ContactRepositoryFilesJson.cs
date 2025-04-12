@@ -2,37 +2,51 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Maui.ApplicationModel.Communication;
+using Contact = Contacts.MAUI.Models.Contact;
 
-namespace Contacts.MAUI.Models
+namespace Contacts.MAUI.Models.Files.Json
 {
-    public static class ContactRepository
+    public static class ContactRepositoryFilesJson
     {
-        public static List<Contact> _contacts = new List<Contact>()
-        {
-            new Contact {ContactId = 1, Name = "John Doe", Email="JohnDoe@gmail.com"},
-            new Contact {ContactId = 2, Name = "Jane Doe", Email="JaneDoe@gmail.com"},
-            new Contact {ContactId = 3, Name = "Tom Hanks", Email="TomHanks@gmail.com"},
-            new Contact {ContactId = 4, Name = "Frank Liu", Email="FrankLiu@gmail.com"}
-        };
+        private static readonly string _fileName = FileSystem.AppDataDirectory + "/Contacts.json";
 
-        public static List<Contact> GetContacts() => _contacts;
+        public static List<Contact> _contacts = new List<Contact>();
+
+        public async static void WriteToFile()
+        {
+            var writeData = JsonSerializer.Serialize(_contacts);
+            File.WriteAllText(_fileName, writeData);
+        }
+
+        public async static void ReadFromFile()
+        {
+            if (File.Exists(_fileName) == false)
+            {
+                var writeData = JsonSerializer.Serialize(_contacts);
+                File.WriteAllText(_fileName, writeData);
+            }
+
+            var rawData = File.ReadAllText(_fileName);
+            _contacts = JsonSerializer.Deserialize<List<Contact>>(rawData);
+        }
+
+        public static List<Contact> GetContacts() 
+        {
+            ReadFromFile();
+
+            return _contacts;
+        }
 
         public static Contact? GetContactById(int contactId)
         {
-            var contact =  _contacts.FirstOrDefault(x => x.ContactId == contactId);
+            var contact = _contacts.FirstOrDefault(x => x.ContactId == contactId);
 
             if (contact != null)
             {
-                return new Contact
-                {
-                    ContactId = contactId,
-                    Email = contact.Email,
-                    Name = contact.Name,
-                    Phone = contact.Phone,
-                    Address = contact.Address,
-                };
+                return new Contact(contactId, contact.Name, contact.Email, contact.Phone, contact.Address);
             }
 
             return null;
@@ -51,6 +65,8 @@ namespace Contacts.MAUI.Models
                 contactToUpdate.Phone = contact.Phone;
                 contactToUpdate.Address = contact.Address;
             }
+
+            WriteToFile();
         }
 
         public static void CreateContact(Contact contact)
@@ -63,21 +79,26 @@ namespace Contacts.MAUI.Models
 
             contact.ContactId = maxId + 1;
             _contacts.Add(contact);
+
+            WriteToFile();
         }
 
         public static void DeleteContact(int contactId)
         {
             var contact = _contacts.FirstOrDefault(x => x.ContactId == contactId);
-            if (contact != null) { 
+            if (contact != null)
+            {
                 _contacts.Remove(contact);
             }
+
+            WriteToFile();
         }
 
         public static List<Contact> SearchContacts(string SearchQuery)
         {
             var contacts = _contacts.Where(x => !string.IsNullOrWhiteSpace(x.Name) && x.Name.StartsWith(SearchQuery, StringComparison.OrdinalIgnoreCase))?.ToList();
 
-            if(contacts == null || contacts.Count == 0)
+            if (contacts == null || contacts.Count == 0)
                 contacts = _contacts.Where(x => !string.IsNullOrWhiteSpace(x.Email) && x.Email.StartsWith(SearchQuery, StringComparison.OrdinalIgnoreCase))?.ToList();
             else
                 return contacts;
